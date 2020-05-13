@@ -221,7 +221,31 @@ static const std::string vAPINames[] =
 "verifypermission",
 "walletlock",
 "walletpassphrase",
-"walletpassphrasechange"    
+"walletpassphrasechange",
+"txouttobinarycache",    
+"trimsubscribe",
+"retrievestreamitems",
+"purgestreamitems",
+"purgepublisheditems",
+"getlicenserequest",
+"decodelicenserequest",
+"decodelicenseconfirmation",
+"listlicenses",
+"getlicenseconfirmation",
+"activatelicense",
+"transferlicense",
+"takelicense",
+"importlicenserequest",
+"createfeed",
+"deletefeed",
+"pausefeed",
+"resumefeed",
+"addtofeed",
+"updatefeed",
+"purgefeed",       
+"listfeeds",
+"getdatarefdata", 
+"datareftobinarycache"
 };
 
 static const CRPCConvertParam vRPCConvertParams[] =
@@ -504,6 +528,22 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "prioritisetransaction", 1 },
     { "prioritisetransaction", 2 },
     { "getlicenseconfirmation", 1 },
+    { "listlicenses", 0 },
+    { "listlicenses", 1 },
+    { "createfeed", 1 },
+    { "deletefeed", 1 },
+    { "pausefeed", 1 },
+    { "resumefeed", 1 },
+    { "addtofeed", 1 },
+    { "addtofeed", 4 },
+    { "updatefeed", 1 },
+    { "updatefeed", 4 },
+    { "listfeeds", 0 },
+    { "listfeeds", 1 },                                                            
+    { "getdatarefdata", 1 },
+    { "getdatarefdata", 2 },
+    { "datareftobinarycache", 2 },
+    { "datareftobinarycache", 3 },
 };
 
 class CRPCConvertTable
@@ -610,6 +650,10 @@ static const CRPCConvertParamMayBeString vRPCConvertParamsMayBeString[] =
     { "listblocks", 0 },
     { "createfrom", 4 },                                                            
     { "create", 3 },                                                            
+    { "listlicenses", 0 },
+    { "addtofeed", 1 },
+    { "updatefeed", 1 },
+    { "listfeeds", 0 },
 };
 
 class CRPCConvertTableMayBeString

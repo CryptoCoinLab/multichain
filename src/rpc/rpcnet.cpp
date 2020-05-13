@@ -116,6 +116,7 @@ Value getpeerinfo(const Array& params, bool fHelp)
         }
 /* MCHN END */        
         obj.push_back(Pair("inbound", stats.fInbound));
+        obj.push_back(Pair("encrypted", stats.fEncrypted));
         obj.push_back(Pair("startingheight", stats.nStartingHeight));
         if (fStateStats) {
             obj.push_back(Pair("banscore", statestats.nMisbehavior));
@@ -151,6 +152,18 @@ Value addnode(const Array& params, bool fHelp)
 
     string strNode = params[0].get_str();
 
+    int port = Params().GetDefaultPort();
+    std::string hostname = "";
+    SplitHostPort(strNode, port, hostname);
+    
+    struct in_addr ipv4_addr;
+    ipv4_addr.s_addr = inet_addr(hostname.c_str());
+    if (ipv4_addr.s_addr == INADDR_NONE) 
+    {
+        throw JSONRPCError(RPC_NOT_ALLOWED, "Invalid node, only numeric IPv4 addresses are allowed");
+    }
+    
+    
     if (strCommand == "onetry")
     {
         CAddress addr;
